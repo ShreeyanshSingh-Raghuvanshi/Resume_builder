@@ -1,0 +1,379 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Playfair+Display:wght@400;700&display=swap");
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Light theme improvements */
+  .light {
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+    --primary: 15 23 42;
+    --primary-foreground: 248 250 252;
+    --secondary: 241 245 249;
+    --secondary-foreground: 15 23 42;
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+    --accent: 241 245 249;
+    --accent-foreground: 15 23 42;
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 15 23 42;
+  }
+
+  /* Dark theme */
+  .dark {
+    --background: 2 6 23;
+    --foreground: 248 250 252;
+    --card: 2 6 23;
+    --card-foreground: 248 250 252;
+    --popover: 2 6 23;
+    --popover-foreground: 248 250 252;
+    --primary: 248 250 252;
+    --primary-foreground: 2 6 23;
+    --secondary: 30 41 59;
+    --secondary-foreground: 248 250 252;
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+    --accent: 30 41 59;
+    --accent-foreground: 248 250 252;
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+    --border: 30 41 59;
+    --input: 30 41 59;
+    --ring: 212 212 216;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme("colors.gray.100");
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: theme("colors.gray.800");
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme("colors.gray.400");
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: theme("colors.gray.600");
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.gray.500");
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.gray.500");
+}
+
+/* Loading Animation */
+.loading-spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #ffd700;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.dark .loading-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #00ffff;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-gradient-to-r from-cinematic-gold via-cinematic-neon to-blue-500 bg-clip-text text-transparent;
+}
+
+/* Glass Effect */
+.glass {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-light {
+  @apply bg-white/80 border-gray-200/50;
+}
+
+.glass-dark {
+  @apply bg-gray-800/50 border-gray-700/50;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-cinematic-gold to-yellow-500 text-black px-6 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-cinematic-gold/30 transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply border-2 border-cinematic-neon text-cinematic-neon px-6 py-3 rounded-full font-bold hover:bg-cinematic-neon hover:text-black transition-all duration-200;
+}
+
+/* Form Styles - Fixed for better contrast and icon positioning */
+.form-input {
+  @apply w-full px-4 py-3 pl-12 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cinematic-gold;
+}
+
+.form-input-light {
+  @apply bg-white border-2 border-gray-300 text-gray-900 placeholder-gray-500;
+}
+
+.form-input-dark {
+  @apply bg-gray-700/50 border-2 border-gray-600 text-white placeholder-gray-400;
+}
+
+.form-input:focus.form-input-light {
+  @apply border-cinematic-gold bg-white;
+}
+
+.form-input:focus.form-input-dark {
+  @apply border-cinematic-neon bg-gray-700/70;
+}
+
+.form-label {
+  @apply block text-sm font-medium mb-2;
+}
+
+.form-label-light {
+  @apply text-gray-700;
+}
+
+.form-label-dark {
+  @apply text-gray-300;
+}
+
+/* Icon positioning fix */
+.input-icon {
+  @apply absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none;
+}
+
+.input-icon-light {
+  @apply text-gray-500;
+}
+
+.input-icon-dark {
+  @apply text-gray-400;
+}
+
+/* Card Styles */
+.card {
+  @apply rounded-2xl p-6 transition-all duration-300;
+}
+
+.card-light {
+  @apply bg-white border border-gray-200 shadow-sm hover:shadow-lg;
+}
+
+.card-dark {
+  @apply bg-gray-800/50 border border-gray-700;
+}
+
+.card-hover {
+  @apply hover:border-cinematic-neon/50 transition-all duration-300;
+}
+
+/* Text contrast improvements */
+.text-primary-light {
+  @apply text-gray-900;
+}
+
+.text-primary-dark {
+  @apply text-white;
+}
+
+.text-secondary-light {
+  @apply text-gray-700;
+}
+
+.text-secondary-dark {
+  @apply text-gray-300;
+}
+
+.text-muted-light {
+  @apply text-gray-600;
+}
+
+.text-muted-dark {
+  @apply text-gray-400;
+}
+
+/* Background improvements */
+.bg-primary-light {
+  @apply bg-gradient-to-br from-gray-50 via-white to-gray-100;
+}
+
+.bg-primary-dark {
+  @apply bg-gradient-to-br from-cinematic-dark via-gray-900 to-black;
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Template card improvements */
+.template-card {
+  @apply group relative overflow-hidden rounded-2xl transition-all duration-300 hover:scale-105;
+}
+
+.template-card-light {
+  @apply bg-white border border-gray-200 shadow-sm hover:shadow-xl hover:border-cinematic-gold/50;
+}
+
+.template-card-dark {
+  @apply bg-gray-800/50 border border-gray-700 hover:border-cinematic-neon/50;
+}
+
+/* Subscription badge */
+.subscription-badge {
+  @apply absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-bold;
+}
+
+.subscription-badge-pro {
+  @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white;
+}
+
+.subscription-badge-premium {
+  @apply bg-gradient-to-r from-cinematic-gold to-yellow-500 text-black;
+}
+
+/* Rating stars */
+.rating-star {
+  @apply w-4 h-4 text-yellow-400 fill-current;
+}
+
+/* Review card */
+.review-card {
+  @apply rounded-xl p-4 transition-all duration-200;
+}
+
+.review-card-light {
+  @apply bg-gray-50 border border-gray-200;
+}
+
+.review-card-dark {
+  @apply bg-gray-700/50 border border-gray-600;
+}
+
+/* Responsive Typography */
+@screen sm {
+  .text-responsive-xl {
+    @apply text-2xl;
+  }
+}
+
+@screen md {
+  .text-responsive-xl {
+    @apply text-3xl;
+  }
+}
+
+@screen lg {
+  .text-responsive-xl {
+    @apply text-4xl;
+  }
+}
+
+@screen xl {
+  .text-responsive-xl {
+    @apply text-5xl;
+  }
+}
+
+/* Payment modal */
+.payment-modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+}
+
+.payment-backdrop {
+  @apply absolute inset-0 bg-black/50 backdrop-blur-sm;
+}
+
+.payment-content {
+  @apply relative w-full max-w-md rounded-2xl p-6 shadow-2xl;
+}
+
+.payment-content-light {
+  @apply bg-white border border-gray-200;
+}
+
+.payment-content-dark {
+  @apply bg-gray-800 border border-gray-700;
+}
